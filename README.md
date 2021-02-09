@@ -92,7 +92,7 @@ To get the results, run:
     $ python serps_get.py  
 
 The script will request the API to check for available results, then download the data for each done task and repeat while there are available results.
-/!\ Be aware that if for any reason your script stops, the data will be lost. In another words, results are saved when there is no more data to grab.
+/!\ Be aware that if for any reason your script stops, the data will be lost. In nother words, results are saved when there is no more data to grab.
 
 Available options:  
 - `config`: configuration file to use (default: `config.ini`)  
