@@ -132,7 +132,7 @@ if __name__ == '__main__':
                                     row["faq"] = json.dumps(item["faq"])
                                 if "items" in item.keys():
                                     row["items"] = json.dumps(item["items"])
-                                if ("rectangle" in item.keys()) and (item["rectangle"]["y"] is not None):
+                                if ("rectangle" in item.keys()) and (item["rectangle"] is not None):
                                     row["pixels_from_top"] = item["rectangle"]["y"]
 
                                 if (args.knowledge_graph) and (item["type"] == "knowledge_graph"):
