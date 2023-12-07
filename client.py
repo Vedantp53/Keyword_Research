@@ -3,9 +3,12 @@ from base64 import b64encode
 from json import loads
 from json import dumps
 
+
 class RestClient:
     domain = "api.dataforseo.com"
-#    domain = "sandbox.dataforseo.com"
+    # domain = "sandbox.dataforseo.com"
+    username = "vedantpangudwalw@gmail.com"
+    password = "2c937c8141a7a8f1"
 
     def __init__(self, username, password):
         self.username = username
@@ -16,8 +19,8 @@ class RestClient:
         try:
             base64_bytes = b64encode(
                 ("%s:%s" % (self.username, self.password)).encode("ascii")
-                ).decode("ascii")
-            headers = {'Authorization' : 'Basic %s' %  base64_bytes}
+            ).decode("ascii")
+            headers = {"Authorization": "Basic %s" % base64_bytes}
             connection.request(method, path, headers=headers, body=data)
             response = connection.getresponse()
             return loads(response.read().decode())
@@ -25,11 +28,11 @@ class RestClient:
             connection.close()
 
     def get(self, path):
-        return self.request(path, 'GET')
+        return self.request(path, "GET")
 
     def post(self, path, data):
         if isinstance(data, str):
             data_str = data
         else:
             data_str = dumps(data)
-        return self.request(path, 'POST', data_str)
+        return self.request(path, "POST", data_str)

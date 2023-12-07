@@ -9,22 +9,29 @@ import argparse
 from client import RestClient
 
 
-if __name__ == '__main__': 
+if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('--config', default="config.ini",
-            type=str, help='Global config file (default: "config.ini")')
+    parser.add_argument(
+        "--config",
+        default="config.ini",
+        type=str,
+        help='Global config file (default: "config.ini")',
+    )
     args = parser.parse_args()
 
     conf = configparser.ConfigParser()
     conf.read(args.config)
-    user = conf['general']['user']
-    password = conf['general']['password']
+    user = conf["general"]["user"]
+    password = conf["general"]["password"]
 
-    client = RestClient(user,password)
+    client = RestClient(user, password)
 
     response = client.get("/v3/keywords_data/google/search_volume/tasks_ready")
     if response["status_code"] == 20000:
         tasks_available = response["tasks"][0]["result_count"]
         print("{} tasks available".format(tasks_available))
     else:
-        print("error. Code: %d Message: %s" % (response["status_code"], response["status_message"]))
+        print(
+            "error. Code: %d Message: %s"
+            % (response["status_code"], response["status_message"])
+        )
